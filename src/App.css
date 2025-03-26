@@ -1,0 +1,400 @@
+/* App-specific styles */
+/* src/App.css */
+
+/* Using Google Font (add link in public/index.html or import) */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+.polygon-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 15px; /* Adjusted padding */
+  font-family: 'Roboto', sans-serif;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.app-header h1 {
+  font-size: 2.1rem; /* Slightly adjusted */
+  margin-bottom: 8px; /* Adjusted spacing */
+  font-weight: 700;
+}
+
+.app-header p {
+  color: #666;
+  font-size: 1rem;
+  max-width: 650px; /* Constrain width */
+  margin: 0 auto; /* Center the paragraph */
+  line-height: 1.5;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 15px; /* Row and column gap */
+  justify-content: center; /* Center items horizontally */
+  align-items: center; /* Center items vertically */
+  background-color: #ffffff; /* White background */
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+  margin-bottom: 25px;
+  border: 1px solid #e5e7eb; /* Subtle border */
+}
+
+/* Specific section for better grouping if needed */
+.toolbar-section {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping within section */
+  align-items: center;
+  gap: 10px; /* Gap within a section */
+}
+
+/* Visual divider */
+.divider {
+  width: 1px;
+  height: 30px;
+  background-color: #ddd;
+  margin: 0 10px; /* Spacing around divider */
+}
+
+/* Hide divider on smaller screens when toolbar stacks */
+@media (max-width: 992px) { /* Breakpoint adjustments might be needed */
+  .divider {
+    display: none;
+  }
+  .toolbar {
+    flex-direction: column; /* Stack items */
+    align-items: stretch; /* Stretch items full width */
+  }
+   .toolbar-section {
+    justify-content: center; /* Center items in column */
+  }
+}
+
+
+.canvas-container {
+  position: relative; /* Needed for absolute positioning of overlays */
+  margin: 0 auto;
+  border-radius: 8px;
+  overflow: hidden; /* Clips the Konva stage */
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  border: 1px solid #d1d5db; /* Slightly darker border */
+  background-color: #f9fafb; /* Stage background color (if Konva doesn't override) */
+}
+
+/* Konva Stage specific styling if needed */
+.konva-stage canvas {
+  /* Styles applied directly to the canvas element Konva creates */
+  /* Example: */
+  /* outline: 1px dashed red; */
+}
+
+.status-indicator {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px); /* Safari */
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 500;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #374151; /* Text color */
+}
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.status-dot-blue { background-color: #3b82f6; }
+.status-dot-gray { background-color: #9ca3af; }
+.status-dot-green { background-color: #10b981; }
+.status-dot-pulse { animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+
+@keyframes pulse {
+  50% { opacity: .5; }
+}
+
+.zoom-controls {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(4px);
+   -webkit-backdrop-filter: blur(4px); /* Safari */
+  padding: 5px;
+  border-radius: 9999px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.zoom-controls button {
+  width: 28px;
+  height: 28px;
+  padding: 0; /* Override base button padding */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  color: #4b5563; /* Icon color */
+  border: 1px solid #d1d5db;
+  border-radius: 50%;
+  font-size: 12px; /* Icon size */
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+.zoom-controls button:hover:not(:disabled) {
+  background-color: #f3f4f6;
+  transform: none; /* Disable button transform for small icons */
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+.zoom-controls button:disabled {
+  opacity: 0.5;
+  background-color: #e5e7eb !important; /* Ensure disabled style overrides */
+  border-color: #d1d5db !important;
+  cursor: not-allowed;
+}
+.zoom-divider {
+  width: 1px;
+  height: 16px;
+  background-color: #d1d5db;
+  margin: 0 4px;
+}
+.zoom-display {
+  min-width: 35px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  color: #374151;
+  padding: 0 4px;
+}
+
+
+.info-panel {
+  margin-top: 25px;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+  border: 1px solid #e5e7eb;
+}
+
+.info-panel h3 {
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 1.2rem; /* Adjusted */
+  font-weight: 600;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.info-panel h3 i {
+  color: #6b7280; /* Icon color */
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Default 2 columns */
+  gap: 15px;
+  margin-bottom: 20px; /* Space before coordinates */
+}
+
+@media (min-width: 576px) { /* 3 columns on small screens */
+  .info-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (min-width: 992px) { /* 5 columns on large screens */
+  .info-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.info-item {
+  background-color: #f9fafb; /* Lighter item background */
+  padding: 12px; /* Adjusted padding */
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+  text-align: center; /* Center text */
+}
+
+.info-item strong {
+  display: block;
+  margin-bottom: 4px; /* Adjust spacing */
+  color: #6b7280; /* Lighter text */
+  font-size: 0.75rem; /* Smaller label */
+  font-weight: 500;
+  text-transform: uppercase; /* Uppercase label */
+  letter-spacing: 0.05em;
+}
+
+.info-value {
+  font-size: 1.25rem; /* Larger value */
+  color: #1f2937; /* Darker value */
+  font-weight: 600; /* Bolder value */
+}
+.info-value .unit {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #6b7280;
+  margin-left: 3px;
+}
+
+/* Coordinates List */
+.coordinates-section h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #4b5563;
+  margin-bottom: 8px;
+}
+.coordinates-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.8rem; /* Smaller text */
+}
+.coordinate-item {
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  white-space: nowrap; /* Prevent wrapping */
+}
+.coordinate-item strong {
+  font-weight: 600;
+  color: #1d4ed8; /* Blue */
+  margin-right: 3px;
+}
+.coordinate-item-selected {
+  background-color: #dbeafe; /* Light blue background */
+  border-color: #93c5fd; /* Blue border */
+  box-shadow: 0 0 0 1px #93c5fd; /* Subtle ring */
+}
+
+
+/* Generic Button styles (base) */
+.button {
+  display: inline-flex; /* Use inline-flex for icon alignment */
+  align-items: center;
+  justify-content: center;
+  gap: 6px; /* Space between icon and text */
+  padding: 8px 16px; /* Adjusted padding */
+  border: 1px solid transparent; /* Add base border */
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  white-space: nowrap; /* Prevent wrapping */
+  line-height: 1.5; /* Ensure consistent height */
+}
+.button i {
+  font-size: 0.9em; /* Make icon size relative */
+  line-height: 1; /* Prevent icon affecting line height */
+}
+
+/* Button Color Variants */
+.button-primary { background-color: #3b82f6; color: white; border-color: #3b82f6; }
+.button-primary:hover:not(:disabled) { background-color: #2563eb; border-color: #2563eb; }
+
+.button-success { background-color: #10b981; color: white; border-color: #10b981; }
+.button-success:hover:not(:disabled) { background-color: #059669; border-color: #059669; }
+
+.button-danger { background-color: #ef4444; color: white; border-color: #ef4444; }
+.button-danger:hover:not(:disabled) { background-color: #dc2626; border-color: #dc2626; }
+
+.button-secondary { background-color: #ffffff; color: #374151; border-color: #d1d5db; box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); }
+.button-secondary:hover:not(:disabled) { background-color: #f9fafb; }
+
+/* Button states */
+.button:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 3px 5px rgba(0,0,0,0.07); }
+.button:active:not(:disabled) { transform: translateY(0); box-shadow: inset 0 1px 2px rgba(0,0,0,0.1); }
+.button:disabled { background-color: #d1d5db !important; color: #9ca3af !important; border-color: #d1d5db !important; cursor: not-allowed; transform: none; box-shadow: none; opacity: 0.7; /* Use opacity instead of direct bg */ }
+/* Keep secondary disabled distinct */
+.button-secondary:disabled { background-color: #f3f4f6 !important; border-color: #e5e7eb !important; color: #9ca3af !important; opacity: 0.7; }
+
+
+/* Control Styles (Inputs, etc.) */
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+  font-size: 13px;
+}
+.control-group label {
+  margin-right: 4px;
+  font-weight: 500;
+  color: #4b5563;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer; /* Make labels clickable for associated inputs */
+}
+.control-group label i { color: #9ca3af; font-size: 0.9em; }
+
+.control-group input[type="number"],
+.control-group input[type="range"],
+.control-group input[type="color"],
+.control-group input[type="checkbox"] {
+  padding: 4px 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 13px;
+  transition: border-color 0.2s;
+}
+.control-group input[type="number"] { width: 60px; }
+.control-group input[type="range"] { width: 90px; height: 6px; padding: 0; cursor: pointer; appearance: none; background: #e5e7eb; border-radius: 99px; border: none; }
+.control-group input[type="range"]::-webkit-slider-thumb { appearance: none; width: 14px; height: 14px; background: #3b82f6; border-radius: 50%; cursor: pointer; margin-top: -4px; /* Adjust vertical centering */ }
+.control-group input[type="range"]::-moz-range-thumb { width: 14px; height: 14px; background: #3b82f6; border-radius: 50%; cursor: pointer; border: none; }
+
+.control-group input[type="color"] { width: 28px; height: 28px; padding: 2px; border-radius: 4px; cursor: pointer; border: 1px solid #d1d5db; background-color: white; /* Ensure bg for color picker */ }
+.control-group input[type="checkbox"] { width: 16px; height: 16px; padding: 0; border-radius: 4px; accent-color: #3b82f6; cursor: pointer; margin-right: 4px; /* Spacing between checkbox and label text */ }
+
+.control-group input:focus-visible { /* Modern focus outline */
+  border-color: #3b82f6;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.4);
+}
+.control-group input:disabled { background-color: #f3f4f6 !important; cursor: not-allowed; border-color: #e5e7eb !important; opacity: 0.7; }
+.control-group .unit-label { color: #6b7280; font-size: 12px; }
+.control-group .value-display { min-width: 25px; text-align: right; font-weight: 500; color: #374151; }
+
+/* Footer */
+.app-footer {
+  margin-top: 30px;
+  padding: 15px;
+  text-align: center;
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+/* Placeholder for empty metrics */
+.empty-metrics-placeholder {
+  text-align: center;
+  padding: 30px 15px;
+  color: #9ca3af;
+}
+.empty-metrics-placeholder i {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  display: block;
+  color: #d1d5db;
+}
